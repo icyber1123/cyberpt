@@ -1,37 +1,43 @@
 def is_prime(n):
     if n < 2:
         return False
-    if n == 2 or n == 3:
-        return True
-    if n % 2 == 0:
-        return False
-        d= n-1 
-    s= 0
+    # small primes quick check
+    small_primes = [2, 3, 5, 7, 11, 13, 17, 19, 23, 29, 31, 37]
+    for p in small_primes:
+        if n == p:
+            return True
+        if n % p == 0:
+            return False
+
+    # write n-1 as d * 2^s with d odd
+    d = n - 1
+    s = 0
     while d % 2 == 0:
-        d =int(d / 2)
+        d //= 2
         s += 1
-        bases = [2, 3, 5, 7, 11, 13, 17, 19, 23, 29, 31, 37]
+
+    bases = small_primes
     for a in bases:
-        if a >= n:  
+        if a >= n:
             continue
-           x = (a ** d) % n
+        x = pow(a, d, n)
         if x == 1 or x == n - 1:
             continue
-       
 
-
-
-
- for i in range(s - 1):
-            x = (x ** 2) % n
+        composite = True
+        for i in range(s - 1):
+            x = (x * x) % n
             if x == n - 1:
-  break
-        else:
+                composite = False
+                break
+        if composite:
             return False
+
     return True
+
 n = int(input("Enter the number: "))
 if is_prime(n):
     print("Prime")
 else:
-    print("Not prime")           
+    print("Not prime")
 
