@@ -1,0 +1,22 @@
+# Substitution Cipher - Encrypt & Decrypt
+text = input("Text: ").upper()
+key = input("Key (26 letters): ").upper()
+# Encrypt
+enc = ""
+for ch in text:
+    if ch >= 'A' and ch <= 'Z':
+        enc += key[ord(ch) - 65]
+    else:
+        enc += ch
+print("Encrypted:", enc)
+# Decrypt
+dec = ""
+for ch in enc:
+    if ch >= 'A' and ch <= 'Z':
+        for i in range(26):
+            if key[i] == ch:
+                dec += chr(i + 65)
+                break
+    else:
+        dec += ch
+print("Decrypted:", dec)
