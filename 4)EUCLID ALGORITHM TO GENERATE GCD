@@ -1,0 +1,16 @@
+def gcd(a,b):
+    while b!=0:
+        a,b=b,a%b
+    return a
+def gcd_array(arr):
+    result=arr[0]
+    for num in arr[1:]:
+        result=gcd(result,num)
+    return result
+n=int(input("Enter the number of elements in the array: "))
+arr=[]
+for i in range(n):
+    num=int(input(f"Enter element {i+1}:"))
+    arr.append(num)
+result=gcd_array(arr)
+print(f"The GCD of the array {arr} is:{result}")
