@@ -1,0 +1,23 @@
+# Caesar Cipher - Encrypt & Decrypt
+text = input("Text: ")
+key = int(input("Key: "))
+# Encrypt
+enc = ""
+for ch in text:
+    if ch >= 'A' and ch <= 'Z':
+        enc += chr((ord(ch) - 65 + key) % 26 + 65)
+    elif ch >= 'a' and ch <= 'z':
+        enc += chr((ord(ch) - 97 + key) % 26 + 97)
+    else:
+        enc += ch
+print("Encrypted:", enc)
+# Decrypt
+dec = ""
+for ch in enc:
+    if ch >= 'A' and ch <= 'Z':
+        dec += chr((ord(ch) - 65 - key) % 26 + 65)
+    elif ch >= 'a' and ch <= 'z':
+        dec += chr((ord(ch) - 97 - key) % 26 + 97)
+    else:
+        dec += ch
+print("Decrypted:", dec)
